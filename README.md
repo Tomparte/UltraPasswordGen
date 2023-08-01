@@ -61,6 +61,6 @@ Contributions to UltraPasswordGen are welcome! If you find any issues, have sugg
 
 ## About the Author
 
-UltraPasswordGen is developed and maintained by [Tomparte](https://github.com/Tomparte) and thaks to ChatGPT (OpenAI <3). If you have any questions or need assistance, feel free to contact me through GitHub.
+UltraPasswordGen is developed and maintained by [Tomparte](https://github.com/Tomparte) and thanks to ChatGPT (OpenAI <3). If you have any questions or need assistance, feel free to contact me through GitHub.
 
 ---
