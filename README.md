@@ -1,6 +1,7 @@
 # UltraPasswordGen - Password Generator Tool
 
-UltraPasswordGen is a simple and powerful password generator tool that allows you to create complex passwords with various options. This graphical user interface (GUI) application is built using Python's Tkinter library, making it easy to use on multiple platforms.
+UltraPasswordGen is a simple and powerful password generator tool that allows you to create complex passwords with various options. 
+This graphical application is built using Python & Python's Tkinter library.
 
 ## Features
 
