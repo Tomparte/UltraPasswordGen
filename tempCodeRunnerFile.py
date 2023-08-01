@@ -46,35 +46,21 @@ class PasswordGeneratorApp:
         numbers = bool(self.numbers_var.get())
         special_chars = bool(self.special_chars_var.get())
 
-        # Create a list to hold all selected character types
-        selected_characters = [string.ascii_lowercase]
+        characters = string.ascii_lowercase
         if uppercase:
-            selected_characters.append(string.ascii_uppercase)
+            characters += string.ascii_uppercase
         if numbers:
-            selected_characters.append(string.digits)
+            characters += string.digits
         if special_chars:
-            selected_characters.append(string.punctuation)
+            characters += string.punctuation
 
-        # Shuffle the selected character types to randomize the distribution
-        random.shuffle(selected_characters)
-
-        # Ensure the password meets the required length
-        password = ''.join(random.choice(chars) for chars in selected_characters for _ in range(length // len(selected_characters)))
-
-        # Add any remaining characters needed to meet the required length
-        password += ''.join(random.choice(chars) for chars in selected_characters[:length % len(selected_characters)])
-
-        # Shuffle the password to make it more random
-        password_list = list(password)
-        random.shuffle(password_list)
-        password = ''.join(password_list)
-
+        password = ''.join(random.choice(characters) for _ in range(length))
         self.password_entry.configure(state='normal')
         self.password_entry.delete(0, tk.END)
         self.password_entry.insert(0, password)
         self.password_entry.configure(state='readonly')
 
-    def update_length_label(self, event=None):
+    def update_length_label(self, event):
         length = self.length_var.get()
         self.length_display.configure(text=f"Length: {length}")
 
