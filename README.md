@@ -53,21 +53,14 @@ To use UltraPasswordGen, follow these simple steps:
 
 Here's a sample demonstration of how the UltraPasswordGen GUI looks:
 
-![UltraPasswordGen GUI](url_to_screenshot.png) (Optional: If you have a screenshot of your application, you can insert it here.)
+![UltraPasswordGen GUI](https://github.com/Tomparte/UltraPasswordGen/blob/main/Screen_Tool.png) 
 
 ## Contributions
 
 Contributions to UltraPasswordGen are welcome! If you find any issues, have suggestions for improvements, or want to add new features, feel free to open an issue or create a pull request.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). You are free to modify, distribute, and use the code as per the terms of this license.
-
 ## About the Author
 
-UltraPasswordGen is developed and maintained by [Tomparte](https://github.com/your_username). If you have any questions or need assistance, feel free to contact me via email (your_email@example.com) or through GitHub.
+UltraPasswordGen is developed and maintained by [Tomparte](https://github.com/Tomparte) and thaks to ChatGPT (OpenAI <3). If you have any questions or need assistance, feel free to contact me through GitHub.
 
 ---
-*(You can include any additional information, usage tips, or acknowledgments as you see fit.)*
-
-That's it! Now you have a beautiful README.md file for your UltraPasswordGen project. Remember to customize the URLs for the logo, screenshot, and GitHub profile to match your project details. Happy coding!
