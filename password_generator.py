@@ -1,2 +1,2 @@
 cc
-test
+testcc
