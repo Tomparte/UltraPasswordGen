@@ -2,18 +2,24 @@ import tkinter as tk
 from tkinter import ttk
 import random
 import string
+import secrets
+from PIL import Image, ImageTk
 
 class PasswordGeneratorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("UltraPasswordGen - by Tomparte")
-        self.root.geometry("500x350")
+        self.root.geometry("600x500")  # Adjust the window height to accommodate the logo
 
-        self.password_label = ttk.Label(root, text="Generated Password:")
-        self.password_label.pack(pady=10)
+        # Load and display the logo image
+        logo_image = Image.open("Logo_Tool.png")
+        logo_image.thumbnail((200, 200))  # Use thumbnail() to resize the image
+        self.logo_photo = ImageTk.PhotoImage(logo_image)
+        self.logo_label = ttk.Label(root, image=self.logo_photo)
+        self.logo_label.pack(pady=10)
 
-        self.password_entry = ttk.Entry(root, width=30, font=("Arial", 12), state='readonly')
-        self.password_entry.pack(pady=10)
+        self.title_label = ttk.Label(root, text="UltraPasswordGen", font=("Arial", 16, "bold"))
+        self.title_label.pack(pady=5)
 
         self.length_label = ttk.Label(root, text="Password Length:")
         self.length_label.pack()
@@ -39,6 +45,9 @@ class PasswordGeneratorApp:
 
         self.generate_button = ttk.Button(root, text="Generate Password", command=self.generate_password)
         self.generate_button.pack(pady=15)
+
+        self.password_entry = ttk.Entry(root, width=30, font=("Arial", 12), state='readonly')
+        self.password_entry.pack(pady=10)
 
     def generate_password(self):
         length = self.length_var.get()
