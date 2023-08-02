@@ -9,7 +9,11 @@ class PasswordGeneratorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("UltraPasswordGen - by Tomparte")
-        self.root.geometry("600x500") 
+        self.root.geometry("570x550") 
+        self.root.resizable(False, False) 
+
+        # Set the application icon
+        self.root.iconbitmap("Logo_Tool.ico") 
 
         logo_image = Image.open("Logo_Tool.png")
         logo_image.thumbnail((200, 200))
@@ -48,6 +52,11 @@ class PasswordGeneratorApp:
         self.password_entry = ttk.Entry(root, width=30, font=("Arial", 12), state='readonly')
         self.password_entry.pack(pady=10)
 
+        self.complexity_label = ttk.Label(root, text="Complexity:")
+        self.complexity_label.pack()
+        self.complexity_display = ttk.Label(root, text="", font=("Arial", 12))
+        self.complexity_display.pack()
+
     def generate_password(self):
         length = self.length_var.get()
         uppercase = bool(self.uppercase_var.get())
@@ -81,6 +90,35 @@ class PasswordGeneratorApp:
         self.password_entry.delete(0, tk.END)
         self.password_entry.insert(0, password)
         self.password_entry.configure(state='readonly')
+
+        # Check complexity and update display
+        complexity = self.check_complexity(password)
+        self.update_complexity_display(complexity)
+
+    def check_complexity(self, password):
+        complexity = 0
+
+        if any(c in string.ascii_uppercase for c in password):
+            complexity += 1
+        if any(c in string.digits for c in password):
+            complexity += 1
+        if any(c in string.punctuation for c in password):
+            complexity += 1
+
+        if len(password) >= 14 and complexity >= 3 or len(password) >= 15 and complexity >= 2 or len(password) >= 16 and complexity >= 1 or len(password) >= 20:
+            return "Complex"
+        elif len(password) >= 10 and complexity >= 3 or len(password) >= 11 and complexity >= 2 or len(password) >= 12 and complexity >= 1 or len(password) >= 15:
+            return "Medium"
+        else:
+            return "Weak"
+
+    def update_complexity_display(self, complexity):
+        if complexity == "Complex":
+            self.complexity_display.configure(text=complexity, foreground="green")
+        elif complexity == "Medium":
+            self.complexity_display.configure(text=complexity, foreground="orange")
+        else:
+            self.complexity_display.configure(text=complexity, foreground="red")
 
     def update_length_label(self, event=None):
         length = self.length_var.get()
