@@ -4,12 +4,13 @@ import random
 import string
 import secrets
 from PIL import Image, ImageTk
+import tkinter.messagebox
 
 class PasswordGeneratorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("UltraPasswordGen - by Tomparte")
-        self.root.geometry("570x550") 
+        self.root.geometry("570x570") 
         self.root.resizable(False, False) 
 
         # Set the application icon
@@ -49,8 +50,14 @@ class PasswordGeneratorApp:
         self.generate_button = ttk.Button(root, text="Generate Password", command=self.generate_password)
         self.generate_button.pack(pady=15)
 
-        self.password_entry = ttk.Entry(root, width=30, font=("Arial", 12), state='readonly')
-        self.password_entry.pack(pady=10)
+        self.password_frame = ttk.Frame(root)
+        self.password_frame.pack(pady=10)
+
+        self.password_entry = ttk.Entry(self.password_frame, width=30, font=("Arial", 12), state='readonly')
+        self.password_entry.pack(side=tk.LEFT)
+
+        self.copy_button = ttk.Button(self.password_frame, text="Copy", command=self.copy_password)
+        self.copy_button.pack(side=tk.LEFT)
 
         self.complexity_label = ttk.Label(root, text="Complexity:")
         self.complexity_label.pack()
@@ -123,6 +130,14 @@ class PasswordGeneratorApp:
     def update_length_label(self, event=None):
         length = self.length_var.get()
         self.length_display.configure(text=f"Length: {length}")
+
+    def copy_password(self):
+        password = self.password_entry.get()
+        if password:
+            self.root.clipboard_clear()
+            self.root.clipboard_append(password)
+            self.root.update()  # Manually update clipboard content
+            tkinter.messagebox.showinfo("Password Copied", "Password copied to clipboard!")
 
 if __name__ == "__main__":
     root = tk.Tk()
