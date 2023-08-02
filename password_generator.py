@@ -23,7 +23,7 @@ class PasswordGeneratorApp:
         logo_image.thumbnail((200, 200))
         self.logo_photo = ImageTk.PhotoImage(logo_image)
         self.logo_label = ttk.Label(root, image=self.logo_photo)
-        self.logo_label.pack(pady=10)
+        self.logo_label.pack(pady=5)
 
         # Display the title label
         self.title_label = ttk.Label(root, text="UltraPasswordGen", font=("Arial", 16, "bold"))
@@ -31,7 +31,7 @@ class PasswordGeneratorApp:
 
         # Display the password length options
         self.length_label = ttk.Label(root, text="Password Length:")
-        self.length_label.pack()
+        self.length_label.pack(pady=10)
 
         self.length_var = tk.IntVar(value=12)
         self.length_scale = ttk.Scale(root, from_=6, to=50, variable=self.length_var, orient=tk.HORIZONTAL, length=200, command=self.update_length_label)
