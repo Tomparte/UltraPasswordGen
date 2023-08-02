@@ -1,8 +1,7 @@
 # UltraPasswordGen - Password Generator Tool
 
-![UltraPasswordGen Logo]
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Tomparte/UltraPasswordGen/blob/main/Logo_Tool.png">
+  <img src="https://github.com/Tomparte/UltraPasswordGen/blob/main/Logo_Tool.png">
 </p>
 
 UltraPasswordGen is a simple and powerful password generator tool that allows you to create complex passwords with various options. 
