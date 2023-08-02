@@ -26,6 +26,11 @@ To use UltraPasswordGen, follow these simple steps:
 
 2. **Install Dependencies**:
    UltraPasswordGen requires Python and the Tkinter library. If you don't have Python installed, download it from the official website (https://www.python.org/downloads/).
+   When Python is installed, you have to install libraries :
+   ```
+   pip install tkinter
+   pip install pillow
+   ```
 
 3. **Launch the Application**:
    Open a terminal or command prompt, navigate to the project folder, and run the following command:

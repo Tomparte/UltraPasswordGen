@@ -9,11 +9,10 @@ class PasswordGeneratorApp:
     def __init__(self, root):
         self.root = root
         self.root.title("UltraPasswordGen - by Tomparte")
-        self.root.geometry("600x500")  # Adjust the window height to accommodate the logo
+        self.root.geometry("600x500") 
 
-        # Load and display the logo image
         logo_image = Image.open("Logo_Tool.png")
-        logo_image.thumbnail((200, 200))  # Use thumbnail() to resize the image
+        logo_image.thumbnail((200, 200))
         self.logo_photo = ImageTk.PhotoImage(logo_image)
         self.logo_label = ttk.Label(root, image=self.logo_photo)
         self.logo_label.pack(pady=10)
