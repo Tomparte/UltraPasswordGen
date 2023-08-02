@@ -56,7 +56,7 @@ To use UltraPasswordGen, follow these simple steps:
    Click the "Generate Password" button to generate a new password based on your preferences. The generated password will be displayed in the "Generated Password" field.
 
 6. **Copy Password**:
-   The generated password is automatically displayed in the read-only entry field. You can easily copy the password by selecting the text and using the "Copy" function (e.g., right-click and select "Copy" or press Ctrl+C).
+   The generated password is automatically displayed in the read-only entry field. You can easily copy the password by clicking the "Copy" button.
 
 ## Example
 
