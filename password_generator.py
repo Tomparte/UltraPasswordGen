@@ -23,7 +23,7 @@ class PasswordGeneratorApp:
         logo_image.thumbnail((200, 200))
         self.logo_photo = ImageTk.PhotoImage(logo_image)
         self.logo_label = ttk.Label(root, image=self.logo_photo)
-        self.logo_label.pack(pady=5)
+        self.logo_label.pack(pady=0)
 
         # Display the title label
         self.title_label = ttk.Label(root, text="UltraPasswordGen", font=("Arial", 16, "bold"))
@@ -38,7 +38,7 @@ class PasswordGeneratorApp:
         self.length_scale.pack()
 
         self.length_display = ttk.Label(root, text="Length: 12")
-        self.length_display.pack(pady=5)
+        self.length_display.pack(pady=10)
 
         # Display options for including uppercase letters, numbers, and special characters
         self.uppercase_var = tk.IntVar(value=0)
@@ -51,7 +51,7 @@ class PasswordGeneratorApp:
 
         self.special_chars_var = tk.IntVar(value=0)
         self.special_chars_check = ttk.Checkbutton(root, text="Include Special Characters", variable=self.special_chars_var)
-        self.special_chars_check.pack(pady=5)
+        self.special_chars_check.pack(pady=10)
 
         # Display the "Generate Password" button
         self.generate_button = ttk.Button(root, text="Generate Password", command=self.generate_password)
