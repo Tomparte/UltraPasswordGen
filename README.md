@@ -12,6 +12,7 @@ This graphical application is built using Python & Python's Tkinter & Pillow lib
 - Generate strong and secure passwords with ease.
 - Customize password length to meet your requirements.
 - Include uppercase letters, numbers, and special characters to enhance password complexity.
+- Check the complexity of the generated password.
 - Quick and straightforward user interface.
 
 ## Getting Started
@@ -57,6 +58,9 @@ To use UltraPasswordGen, follow these simple steps:
 
 6. **Copy Password**:
    The generated password is automatically displayed in the read-only entry field. You can easily copy the password by clicking the "Copy" button.
+
+6. **Verify Complexity**:
+   The complexity of the generated password is automatically displayed according to a number of parameters (length, alpha characters, etc.). 3 levels of complexity are implemented: low (red), medium (orange) and complex (green).
 
 ## Example
 
