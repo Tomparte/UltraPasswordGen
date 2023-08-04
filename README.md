@@ -12,7 +12,7 @@ This graphical application is built using Python & Python's Tkinter & Pillow lib
 - Generate strong and secure passwords with ease.
 - Customize password length to meet your requirements.
 - Include uppercase letters, numbers, and special characters to enhance password complexity.
-- Check the complexity of the generated password.
+- Check complexity of the generated password.
 - Quick and straightforward user interface.
 
 ## Getting Started
