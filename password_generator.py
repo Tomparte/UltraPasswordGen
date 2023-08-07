@@ -257,7 +257,7 @@ class PasswordGeneratorApp:
         with open("password_history.txt", "w") as file:
             for password in self.history_listbox.get(0, tk.END):
                 file.write(password + "\n")
-
+ 
 # Main program entry point
 if __name__ == "__main__":
     root = tk.Tk()
