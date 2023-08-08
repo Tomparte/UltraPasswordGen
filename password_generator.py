@@ -47,6 +47,10 @@ class PasswordGeneratorApp:
         # Set the application icon
         self.root.iconbitmap("Logo_Tool.ico") 
 
+        # Load settings of the user
+        self.settings = Settings()
+        self.settings.load_settings()  # Load settings at the start
+
         # Create the "Settings" button
         self.settings_button = ttk.Button(self.root, text="Settings", command=self.open_settings)
         self.settings_button.pack(anchor="ne", padx=10, pady=10)  # Positioned at top right corner
@@ -98,7 +102,7 @@ class PasswordGeneratorApp:
         self.generate_button = ttk.Button(self.options_frame, text="Generate Password", command=self.generate_password)
         self.generate_button.pack(pady=15)
 
-        # Display the password entry field 
+        # Display the password entry field in read-only mode
         self.password_frame = ttk.Frame(self.options_frame)
         self.password_frame.pack(pady=10)
 
@@ -153,7 +157,8 @@ class PasswordGeneratorApp:
         # Load password history from file
         self.load_password_history()
 
-        
+        # Apply the user's settings loaded before
+        self.apply_settings()
 
     # Function to generate a password based on user preferences
     def generate_password(self):
@@ -293,6 +298,7 @@ class PasswordGeneratorApp:
             for password in self.history_listbox.get(0, tk.END):
                 file.write(password + "\n")
 
+    # Function to open the settings window
     def open_settings(self):
         settings_window = tk.Toplevel(self.root)
         settings_window.title("Settings")
@@ -318,16 +324,39 @@ class PasswordGeneratorApp:
         self.include_special_chars_check = ttk.Checkbutton(settings_window, text="Include Special Characters", variable=self.include_special_chars_var)
         self.include_special_chars_check.pack(pady=10)
 
-        self.save_settings_button = ttk.Button(settings_window, text="Save Settings", command=self.save_settings)
+        self.save_settings_button = ttk.Button(settings_window, text="Save Settings", command=self.save_settings_and_update_main_window)
         self.save_settings_button.pack(pady=10)
 
-    def save_settings(self):
-        self.settings.set_setting("password_length", self.password_length_var.get())
-        self.settings.set_setting("include_uppercase", self.include_uppercase_var.get())
-        self.settings.set_setting("include_numbers", self.include_numbers_var.get())
-        self.settings.set_setting("include_special_chars", self.include_special_chars_var.get())
-        self.settings.save_settings()
+    # Function to load settings on the main window
+    def load_settings(self):
+        self.length_var.set(self.settings.get_setting("password_length"))
+        self.uppercase_var.set(self.settings.get_setting("include_uppercase"))
+        self.numbers_var.set(self.settings.get_setting("include_numbers"))
+        self.special_chars_var.set(self.settings.get_setting("include_special_chars"))
+
+        # Reconfigure the main window based on the new settings
+        self.update_length_label()
+
+    # Function to save the settings to file and update the main window
+    def save_settings_and_update_main_window(self):
+        self.length_var.set(self.password_length_var.get())
+        self.uppercase_var.set(self.include_uppercase_var.get())
+        self.numbers_var.set(self.include_numbers_var.get())
+        self.special_chars_var.set(self.include_special_chars_var.get())
+
+        # Reconfigure the main window based on the new settings
+        self.update_length_label()
+
+        # Message box to confirm settings have been saved
         tkinter.messagebox.showinfo("Settings Saved", "Your settings have been saved!")
+
+    # Function to apply the loaded settings to the interface
+    def apply_settings(self):
+        self.length_var.set(self.settings.get_setting("password_length"))
+        self.uppercase_var.set(self.settings.get_setting("include_uppercase"))
+        self.numbers_var.set(self.settings.get_setting("include_numbers"))
+        self.special_chars_var.set(self.settings.get_setting("include_special_chars"))
+        self.update_length_label()
 
 # Main program entry point
 if __name__ == "__main__":
