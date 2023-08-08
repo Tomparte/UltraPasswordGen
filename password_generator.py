@@ -2,9 +2,38 @@ import tkinter as tk
 from tkinter import ttk
 import random
 import string
-import secrets
 from PIL import Image, ImageTk
 import tkinter.messagebox
+import json
+
+# Define the Settings class to manage user settings
+class Settings:
+    def __init__(self, filename="settings.json"):
+        self.filename = filename
+        self.defaults = {
+            "password_length": 12,
+            "include_uppercase": False,
+            "include_numbers": False,
+            "include_special_chars": False
+        }
+        self.load_settings()
+
+    def load_settings(self):
+        try:
+            with open(self.filename, "r") as file:
+                self.settings = json.load(file)
+        except FileNotFoundError:
+            self.settings = self.defaults
+
+    def save_settings(self):
+        with open(self.filename, "w") as file:
+            json.dump(self.settings, file)
+
+    def get_setting(self, key):
+        return self.settings.get(key, self.defaults.get(key))
+
+    def set_setting(self, key, value):
+        self.settings[key] = value
 
 # Define the main application class
 class PasswordGeneratorApp:
@@ -12,11 +41,15 @@ class PasswordGeneratorApp:
         # Initialize the main window
         self.root = root
         self.root.title("UltraPasswordGen - by Tomparte")
-        self.root.geometry("800x570") 
+        self.root.geometry("750x620") 
         self.root.resizable(False, False) 
 
         # Set the application icon
         self.root.iconbitmap("Logo_Tool.ico") 
+
+        # Create the "Settings" button
+        self.settings_button = ttk.Button(self.root, text="Settings", command=self.open_settings)
+        self.settings_button.pack(anchor="ne", padx=10, pady=10)  # Positioned at top right corner
 
         # Load and display the logo
         logo_image = Image.open("Logo_Tool.png")
@@ -119,6 +152,8 @@ class PasswordGeneratorApp:
 
         # Load password history from file
         self.load_password_history()
+
+        
 
     # Function to generate a password based on user preferences
     def generate_password(self):
@@ -257,7 +292,43 @@ class PasswordGeneratorApp:
         with open("password_history.txt", "w") as file:
             for password in self.history_listbox.get(0, tk.END):
                 file.write(password + "\n")
- 
+
+    def open_settings(self):
+        settings_window = tk.Toplevel(self.root)
+        settings_window.title("Settings")
+
+        self.settings = Settings()
+
+        self.password_length_label = ttk.Label(settings_window, text="Default Password Length:")
+        self.password_length_label.pack(pady=5)
+
+        self.password_length_var = tk.IntVar(value=self.settings.get_setting("password_length"))
+        self.password_length_entry = ttk.Entry(settings_window, textvariable=self.password_length_var)
+        self.password_length_entry.pack()
+
+        self.include_uppercase_var = tk.BooleanVar(value=self.settings.get_setting("include_uppercase"))
+        self.include_uppercase_check = ttk.Checkbutton(settings_window, text="Include Uppercase Letters", variable=self.include_uppercase_var)
+        self.include_uppercase_check.pack(pady=5)
+
+        self.include_numbers_var = tk.BooleanVar(value=self.settings.get_setting("include_numbers"))
+        self.include_numbers_check = ttk.Checkbutton(settings_window, text="Include Numbers", variable=self.include_numbers_var)
+        self.include_numbers_check.pack(pady=5)
+
+        self.include_special_chars_var = tk.BooleanVar(value=self.settings.get_setting("include_special_chars"))
+        self.include_special_chars_check = ttk.Checkbutton(settings_window, text="Include Special Characters", variable=self.include_special_chars_var)
+        self.include_special_chars_check.pack(pady=10)
+
+        self.save_settings_button = ttk.Button(settings_window, text="Save Settings", command=self.save_settings)
+        self.save_settings_button.pack(pady=10)
+
+    def save_settings(self):
+        self.settings.set_setting("password_length", self.password_length_var.get())
+        self.settings.set_setting("include_uppercase", self.include_uppercase_var.get())
+        self.settings.set_setting("include_numbers", self.include_numbers_var.get())
+        self.settings.set_setting("include_special_chars", self.include_special_chars_var.get())
+        self.settings.save_settings()
+        tkinter.messagebox.showinfo("Settings Saved", "Your settings have been saved!")
+
 # Main program entry point
 if __name__ == "__main__":
     root = tk.Tk()
