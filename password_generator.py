@@ -303,14 +303,28 @@ class PasswordGeneratorApp:
         settings_window = tk.Toplevel(self.root)
         settings_window.title("Settings")
 
-        self.settings = Settings()
+        # Set the application icon for the settings window
+        settings_window.iconbitmap("Logo_Tool.ico")
+
+        # Load settings from the main window
+        self.load_settings()
 
         self.password_length_label = ttk.Label(settings_window, text="Default Password Length:")
         self.password_length_label.pack(pady=5)
 
         self.password_length_var = tk.IntVar(value=self.settings.get_setting("password_length"))
-        self.password_length_entry = ttk.Entry(settings_window, textvariable=self.password_length_var)
-        self.password_length_entry.pack()
+
+        # Create a frame to contain the slider and its value display
+        slider_frame = ttk.Frame(settings_window)
+        slider_frame.pack()
+
+        # Create a slider for password length
+        self.password_length_slider = ttk.Scale(slider_frame, from_=6, to=50, variable=self.password_length_var, orient=tk.HORIZONTAL, length=120)
+        self.password_length_slider.pack()
+
+        # Display the selected value of the slider
+        self.password_length_display = ttk.Label(slider_frame, textvariable=self.password_length_var)
+        self.password_length_display.pack()
 
         self.include_uppercase_var = tk.BooleanVar(value=self.settings.get_setting("include_uppercase"))
         self.include_uppercase_check = ttk.Checkbutton(settings_window, text="Include Uppercase Letters", variable=self.include_uppercase_var)
@@ -339,13 +353,17 @@ class PasswordGeneratorApp:
 
     # Function to save the settings to file and update the main window
     def save_settings_and_update_main_window(self):
-        self.length_var.set(self.password_length_var.get())
-        self.uppercase_var.set(self.include_uppercase_var.get())
-        self.numbers_var.set(self.include_numbers_var.get())
-        self.special_chars_var.set(self.include_special_chars_var.get())
+        # Update the settings object with the new settings from the settings window
+        self.settings.set_setting("password_length", self.password_length_var.get())
+        self.settings.set_setting("include_uppercase", self.include_uppercase_var.get())
+        self.settings.set_setting("include_numbers", self.include_numbers_var.get())
+        self.settings.set_setting("include_special_chars", self.include_special_chars_var.get())
 
-        # Reconfigure the main window based on the new settings
-        self.update_length_label()
+        # Save the settings to file
+        self.settings.save_settings()
+
+        # Apply the new settings to the main window
+        self.load_settings()
 
         # Message box to confirm settings have been saved
         tkinter.messagebox.showinfo("Settings Saved", "Your settings have been saved!")
