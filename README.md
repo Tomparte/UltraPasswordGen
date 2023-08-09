@@ -79,6 +79,6 @@ UltraPasswordGen is developed and maintained by [Tomparte](https://github.com/To
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=tomparte/Ultrapasswordgen&type=Date)](https://star-history.com/#tomparte/Ultrapasswordgen&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=tomparte/UltraPasswordGen&type=Date)](https://star-history.com/#tomparte/UltraPasswordGen&Date)
 
 ---
