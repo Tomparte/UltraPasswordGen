@@ -76,4 +76,9 @@ Contributions to UltraPasswordGen are welcome! If you find any issues, have sugg
 
 UltraPasswordGen is developed and maintained by [Tomparte](https://github.com/Tomparte) thanks to ChatGPT (OpenAI <3). If you have any questions or need assistance, feel free to contact me through GitHub.
 
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=tomparte/Ultrapasswordgen&type=Date)](https://star-history.com/#tomparte/Ultrapasswordgen&Date)
+
 ---
