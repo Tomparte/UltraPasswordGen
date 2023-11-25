@@ -319,7 +319,7 @@ class PasswordGeneratorApp:
         slider_frame.pack()
 
         # Create a slider for password length
-        self.password_length_slider = ttk.Scale(slider_frame, from_=6, to=50, variable=self.password_length_var, orient=tk.HORIZONTAL, length=120)
+        self.password_length_slider = ttk.Scale(slider_frame, from_=6, to=50, variable=self.password_length_var, orient=tk.HORIZONTAL, length=120, command=self.update_password_length_slider)
         self.password_length_slider.pack()
 
         # Display the selected value of the slider
@@ -340,6 +340,10 @@ class PasswordGeneratorApp:
 
         self.save_settings_button = ttk.Button(settings_window, text="Save Settings", command=self.save_settings_and_update_main_window)
         self.save_settings_button.pack(pady=10)
+    
+    def update_password_length_slider(self, value):
+    # Round the value to the nearest integer and update the IntVar
+        self.password_length_var.set(round(float(value)))
 
     # Function to load settings on the main window
     def load_settings(self):
